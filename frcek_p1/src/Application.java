@@ -13,5 +13,6 @@ public class Application {
         Encrypter encrypt = new Encrypter("1234");
 
         encrypt.printDat();
+        encrypt.toAnArray();
     }
 }

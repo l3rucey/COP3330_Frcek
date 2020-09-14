@@ -5,17 +5,40 @@ public class Encrypter {
         numString = s;
     }
 
-    public void toAnArray(String s) {
-        int[] array1 = new int[4];
-        int num = Integer.parseInt(s);
+    // converts string to int then initializes array
+    public int[] toAnArray() {
+        int[] array = new int[4]; // make this dynamic later
+        int size = array.length;
+        int num = Integer.parseInt(numString);
 
-        for (int i = 0; i < 4; i++) {
-            array1[i] = (num % 4);
+        // initialize array
+        for (int i = 1; i <= size; i++) {
+            array[size - i] = (num % 10);
+            num = (num/10);
         }
 
+        return array;
     }
 
+    public int[] encryptMethod() {
+        int[] array = new int[4];
+        array = toAnArray();
+
+        for (int i = 0; i < 4; i++) {
+            array[i] = ((array[i] + 7)%10);
+        }
+
+        return array;
+    }
+
+    // testing array
     public void printDat() {
-        System.out.println(Integer.parseInt(numString));
+        int i = 0;
+        int[] newArray = new int[4];
+        newArray = encryptMethod();
+
+        for (i = 0; i < 4; i++) {
+            System.out.printf("Arrayyyyyy[%d] = %d\n", i, newArray[i]);
+        }
     }
 }
