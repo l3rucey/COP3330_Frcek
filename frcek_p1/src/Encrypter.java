@@ -23,10 +23,20 @@ public class Encrypter {
     public int[] encryptMethod() {
         int[] array = new int[4];
         array = toAnArray();
+        int i, temp;
 
-        for (int i = 0; i < 4; i++) {
+        // add each digit by 7 then mod by 10
+        for (i = 0; i < 4; i++) {
             array[i] = ((array[i] + 7)%10);
         }
+
+        // Swap 
+        temp = array[0];
+        array[0] = array[2];
+        array[2] = temp;
+        temp = array[1];
+        array[1] = array[3];
+        array[3] = temp;
 
         return array;
     }
