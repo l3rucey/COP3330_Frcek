@@ -1,15 +1,12 @@
-public class Encrypter {
-    private String numString;
+import java.lang.reflect.Array;
 
-    public Encrypter(String s) {
-        numString = s;
-    }
+public class Encrypter {
 
     // converts string to int then initializes array
-    public int[] toAnArray() {
+    public int[] toAnArray(String s) {
         int[] array = new int[4]; // make this dynamic later
         int size = array.length;
-        int num = Integer.parseInt(numString);
+        int num = Integer.parseInt(s);
 
         // initialize array
         for (int i = 1; i <= size; i++) {
@@ -20,9 +17,11 @@ public class Encrypter {
         return array;
     }
 
-    public int[] encryptMethod() {
+    public String encryptMethod(int[] s) {
         int[] array = new int[4];
-        array = toAnArray();
+        array = s;
+        String newString = "";
+        //array = toAnArray(s);
         int i, temp;
 
         // add each digit by 7 then mod by 10
@@ -30,7 +29,7 @@ public class Encrypter {
             array[i] = ((array[i] + 7)%10);
         }
 
-        // Swap 
+        // Swap
         temp = array[0];
         array[0] = array[2];
         array[2] = temp;
@@ -38,17 +37,19 @@ public class Encrypter {
         array[1] = array[3];
         array[3] = temp;
 
-        return array;
+        // convert to string
+        for (i = 0; i < 4; i++) {
+            newString += array[i];
+            //System.out.println(newString);
+        }
+
+        return newString;
     }
 
-    // testing array
-    public void printDat() {
-        int i = 0;
-        int[] newArray = new int[4];
-        newArray = encryptMethod();
+    public String encrypt(String s) {
+        s = encryptMethod(toAnArray(s));
+        //System.out.println(s);
 
-        for (i = 0; i < 4; i++) {
-            System.out.printf("Arrayyyyyy[%d] = %d\n", i, newArray[i]);
-        }
+        return s;
     }
 }
