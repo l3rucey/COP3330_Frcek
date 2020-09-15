@@ -1,30 +1,27 @@
-import java.lang.reflect.Array;
-
 public class Encrypter {
 
-    // converts string to int then initializes array
+    // converts string to int, initializes array
     public int[] toAnArray(String s) {
-        int[] array = new int[4]; // make this dynamic later
-        int size = array.length;
+        int[] array = new int[4];
         int num = Integer.parseInt(s);
 
         // initialize array
-        for (int i = 1; i <= size; i++) {
-            array[size - i] = (num % 10);
+        for (int i = 1; i <= 4; i++) {
+            array[4 - i] = (num % 10);
             num = (num/10);
         }
 
         return array;
     }
 
-    public String encryptMethod(int[] s) {
+    // actual encryption process
+    public String encryptProcess(int[] s) {
+        int i, temp;
         int[] array = new int[4];
         array = s;
         String newString = "";
-        //array = toAnArray(s);
-        int i, temp;
 
-        // add each digit by 7 then mod by 10
+        // Change array elements values
         for (i = 0; i < 4; i++) {
             array[i] = ((array[i] + 7)%10);
         }
@@ -40,15 +37,14 @@ public class Encrypter {
         // convert to string
         for (i = 0; i < 4; i++) {
             newString += array[i];
-            //System.out.println(newString);
         }
 
         return newString;
     }
 
+    // calls helper functions, returns encrypted string
     public String encrypt(String s) {
-        s = encryptMethod(toAnArray(s));
-        //System.out.println(s);
+        s = encryptProcess(toAnArray(s));
 
         return s;
     }
