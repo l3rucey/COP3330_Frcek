@@ -1,12 +1,14 @@
 import java.lang.Math;
 
-import static java.lang.Math.pow;
-
 public class BodyMassIndex {
     private double bmi;
 
     public BodyMassIndex(double h, double w) {
-        this.bmi = 703 * w / pow(h, 2);
+        this.bmi = 703 * w / Math.pow(h, 2);
+    }
+
+    public double getBmi() {
+        return this.bmi;
     }
 
     // Check these conditions later
