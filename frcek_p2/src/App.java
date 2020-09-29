@@ -17,6 +17,7 @@ public class App {
         }
 
         displayBmiStatistics(bmiData);
+
     }
 
     public static boolean moreInput() {
@@ -26,7 +27,7 @@ public class App {
         if (check.equals("Y") || check.equals("y")) {
             return true;
         }
-        return false;
+        return false; //should i change this
     }
     public static double getUserHeight() {
         Scanner input = new Scanner(System.in);
@@ -34,17 +35,16 @@ public class App {
         int check = 0;
 
         while (check <= 0) {
-            System.out.print("Whats your height?\nEnter here: ");
-            height = input.nextDouble(); // cant use next double?
+            System.out.print("What is your height in inches?\nEnter here: ");
+            height = input.nextDouble();
             if (height <=0) {
-                System.out.println("thats not possible. try again.");
+                System.out.println("That is not possible. Please try again.");
             } else {
                 check = 1;
             }
         }
 
-        System.out.println("Your height is " + height);
-
+        //System.out.println("Your height is " + height);
         return height;
     }
 
@@ -54,55 +54,55 @@ public class App {
         int check = 0;
 
         while (check <= 0) {
-            System.out.print("Whats your weight?\nEnter here: ");
+            System.out.print("Whats your weight in pounds?\nEnter here: ");
             weight = input.nextDouble();
             if (weight <=0) {
-                System.out.println("thats not possible. try again.");
+                System.out.println("That is not possible. Please try again.");
             } else {
                 check = 1;
             }
         }
-        System.out.println("Your weight is " + weight);
-
+        //System.out.println("Your weight is " + weight);
         return weight;
     }
 
     public static void displayBmiInfo(BodyMassIndex data) {
-        System.out.println("The categories for weight go as follows:\n");
-        System.out.printf("Underweight < 18.5\nNormal weight = 18.5–24.9\nOverweight = 25–29.9\nObesity >= 30\n\n");
-        data.printTat();
+        double bmi = data.bmiCalc();
+        String category = data.bmiCat(bmi);
+
+        System.out.println("\nThe categories for weight go as follows:\n");
+        System.out.print("Underweight < 18.5\nNormal weight = 18.5–24.9\nOverweight = 25–29.9\nObesity >= 30\n\n");
+        System.out.printf("\nYour bmi %f this places you in the %s category.\n", bmi, category);
     }
 
-    // PRINTS OUT AVERAGE OF DATA
     public static void displayBmiStatistics(ArrayList<BodyMassIndex> data) {
         int i, size = data.size();
         double avg = 0;
+
+        for (BodyMassIndex ob : data) {
+            avg += ob.bmiCalc();
+        }
+
+        avg = avg/size;
+
+        System.out.println("\nThe average BMI of all users is: " + avg);
+
+        // Look at later
         /*
         for (i = 0; i < size; i++) {
             System.out.println(data);
         }
 
-         */
-        /*
         for (i = 0; i < size; i++) {
             //System.out.println(data.getBmi);
-            System.out.println(data.get(i));
+            System.out.println(data.get(i).bmi);
         }
-        */
+
         for (BodyMassIndex ob : data) {
-            System.out.println(ob.getBmi());
+            System.out.println(ob.getBmi();
             avg += ob.getBmi();
         }
 
-        avg = avg/size;
-        System.out.println("About to see avg");
-        System.out.println(avg);
-
-
-        //System.out.println(data.bmi);
-
-        /*
-        //look at later
         for (BodyMassIndex i : data) {
             System.out.println(data.get(0));
             System.out.println(this.data(i));

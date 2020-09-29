@@ -1,27 +1,33 @@
 import java.lang.Math;
 
 public class BodyMassIndex {
-    private double bmi;
+    private double h, w;
 
     public BodyMassIndex(double h, double w) {
-        this.bmi = 703 * w / Math.pow(h, 2);
+        this.h = h;
+        this.w = w;
     }
 
-    public double getBmi() {
-        return this.bmi;
+    public double bmiCalc() {
+        return Math.round((703 * this.w / Math.pow(this.h, 2)) * 100.0) / 100.0;
     }
 
-    // Check these conditions later
-    public void printTat() {
-        if (this.bmi >= 30) {
-            System.out.printf("Your BMI is %f\nThis puts you in the Obesity Category.\n", this.bmi);
-        } else if (this.bmi >= 25) {
-            System.out.printf("Your BMI is %f\nThis puts you in the Overweight Category.\n", this.bmi);
-        } else if (this.bmi >= 18.5) {
-            System.out.printf("Your BMI is %f\nThis puts you in the Normal Weight Category.\n", this.bmi);
+    public String bmiCat(double bmi) {
+        //double bmi = bmiCalc();
+
+        if (bmi >= 30) {
+            return "Obese";
+            //System.out.printf("Your BMI is %f\nThis puts you in the Obesity Category.\n", bmi);
+        } else if (bmi >= 25) {
+            return "Overweight";
+            //System.out.printf("Your BMI is %f\nThis puts you in the Overweight Category.\n", bmi);
+        } else if (bmi >= 18.5) {
+            return "Normal";
+            //System.out.printf("Your BMI is %f\nThis puts you in the Normal Weight Category.\n", bmi);
         } else {
-            System.out.printf("Your BMI is %f\nThis puts you in the Underweight Category.\n", this.bmi);
+            return "Underweight";
+            //System.out.printf("Your BMI is %f\nThis puts you in the Underweight Category.\n", bmi);
         }
-    }
 
+    }
 }
