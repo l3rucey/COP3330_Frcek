@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-// COPY PASTE THE MAIN CLASS SO ITS THE SAME AS ASSIGNMENT
 public class App {
     public static void main(String[] args) {
         ArrayList<BodyMassIndex> bmiData = new ArrayList<BodyMassIndex>();
@@ -17,7 +16,6 @@ public class App {
         }
 
         displayBmiStatistics(bmiData);
-
     }
 
     public static boolean moreInput() {
@@ -29,6 +27,7 @@ public class App {
         }
         return false; //should i change this
     }
+
     public static double getUserHeight() {
         Scanner input = new Scanner(System.in);
         double height = 0;
@@ -44,7 +43,6 @@ public class App {
             }
         }
 
-        //System.out.println("Your height is " + height);
         return height;
     }
 
@@ -62,7 +60,7 @@ public class App {
                 check = 1;
             }
         }
-        //System.out.println("Your weight is " + weight);
+
         return weight;
     }
 
@@ -82,33 +80,10 @@ public class App {
         for (BodyMassIndex ob : data) {
             avg += ob.bmiCalc();
         }
-
         avg = avg/size;
 
         System.out.println("\nThe average BMI of all users is: " + avg);
 
-        // Look at later
-        /*
-        for (i = 0; i < size; i++) {
-            System.out.println(data);
-        }
-
-        for (i = 0; i < size; i++) {
-            //System.out.println(data.getBmi);
-            System.out.println(data.get(i).bmi);
-        }
-
-        for (BodyMassIndex ob : data) {
-            System.out.println(ob.getBmi();
-            avg += ob.getBmi();
-        }
-
-        for (BodyMassIndex i : data) {
-            System.out.println(data.get(0));
-            System.out.println(this.data(i));
-        }
-        */
     }
-
 
 }
