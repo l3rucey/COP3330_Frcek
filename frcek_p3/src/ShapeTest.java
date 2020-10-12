@@ -61,7 +61,7 @@ class ShapeTest {
     }
 
 
-    
+
     @Test
     public void testCubeName() {
         Shape shape = new Cube(100);
