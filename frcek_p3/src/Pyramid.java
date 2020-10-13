@@ -14,8 +14,11 @@ public class Pyramid extends Shape3D{
         return this.name;
     }
 
+    // Is there a cleaner way for this return?
     public double getArea() {
-        return (this.length*this.width)+this.length*Math.sqrt(Math.pow((this.width/2),2)+Math.pow(this.height, 2))+this.width*Math.sqrt(Math.pow((this.length/2), 2)+Math.pow(this.height, 2));
+        return (this.length*this.width)+this.length*Math.sqrt(Math.pow((this.width/2),2)
+                +Math.pow(this.height, 2))+this.width*Math.sqrt(Math.pow((this.length/2), 2)
+                +Math.pow(this.height, 2));
     }
 
     public double getVolume() {
