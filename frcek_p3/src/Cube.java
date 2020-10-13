@@ -11,10 +11,10 @@ public class Cube extends Shape3D{
     }
 
     public double getArea() {
-        return (this.length * this.length) * 6;
+        return (Math.pow(this.length, 2)) * 6;
     }
 
     public double getVolume() {
-        return (this.length * this.length * this.length);
+        return (Math.pow(this.length, 3));
     }
 }

@@ -10,8 +10,7 @@ public class Circle extends Shape2D{
         return this.name;
     }
 
-    // should I use actual pi?
     public double getArea() {
-        return (radius * radius) * Math.PI;
+        return (Math.pow(radius, 2)) * Math.PI;
     }
 }

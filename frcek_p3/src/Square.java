@@ -1,8 +1,6 @@
 public class Square extends Shape2D {
-    // does this need to be private or final or anything??
     String name = "square";
     double length;
-    //double height; dont need...
 
     public Square(double length) {
         this.length = length;
@@ -13,6 +11,6 @@ public class Square extends Shape2D {
     }
 
     public double getArea() {
-        return (this.length * this.length);
+        return (Math.pow(this.length, 2));
     }
 }
