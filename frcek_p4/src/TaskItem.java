@@ -11,12 +11,12 @@ public class TaskItem {
     private String description;
     private String date;
 
-    // Constructor
-    public TaskItem(String title, String description, String date) {
-        this.title = title;
-        this.description = description;
-        this.date = date;
-    }
+//    // Constructor
+//    public TaskItem(String title, String description, String date) {
+//        this.title = title;
+//        this.description = description;
+//        this.date = date;
+//    }
 
     public String getTitle() {
         return this.title;
@@ -43,20 +43,3 @@ public class TaskItem {
     }
 }
 
-//    private Formatter x;
-//
-//    public void openFile() {
-//        try {
-//            x= new Formatter("japanese.txt");
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        }
-//    }
-//
-//    public void addRec() {
-//        x.format("%s%s%s", "8 ", "Bruce", "Frcek");
-//    }
-//
-//    public void closeFile() {
-//        x.close();
-//    }
