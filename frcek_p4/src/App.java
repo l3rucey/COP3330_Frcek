@@ -1,5 +1,6 @@
 import java.io.FileNotFoundException;
 import java.util.Formatter;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 // Handles interaction with user (simplify main later)
@@ -32,10 +33,12 @@ public class App {
                         list.removeItem();
                     } else if (opMenuAnswer == 5) {
                         list.markItem();
-                    } else if (opMenuAnswer == 8) {
+                    } else if (opMenuAnswer == 6) {
+                        list.unMarkItem();
+                    } else if (opMenuAnswer == 8){
                         break;
                     } else {
-                        System.out.println("don't have the other options yet.. sry");
+                        System.out.println("ERROR! Enter an integer value between [1-8] inclusive");
                     }
                 }
             } else if (mainMenuAnswer == 2) {
@@ -61,7 +64,20 @@ public class App {
     // fix that later ... why wont this work... "NoSuchElementException"
     private static int getUserInput() {
         Scanner input = new Scanner(System.in);
-        return input.nextInt();
+        boolean repeat = true;
+        int answer = 0;
+
+        while(repeat) {
+            try {
+                answer = input.nextInt();
+                repeat = false;
+            } catch (InputMismatchException ex) {
+                System.out.println("ERROR: You must enter an integer");
+                input.nextLine();
+                repeat = true;
+            }
+        }
+        return answer;
     }
 
     private static void opMenu() {

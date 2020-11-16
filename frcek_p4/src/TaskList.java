@@ -192,6 +192,49 @@ public class TaskList {
         }
     }
 
+    public void unMarkItem() {
+        // add safety if itemlist = null
+        int size = itemList.size();
+        int counter = 0;
+        int userInput = 0;
+        Scanner input = new Scanner(System.in);
+        System.out.printf("Uncompleted Tasks%n----------------%n%n");
+        for (int i = 0; i < size; i++) {
+            if(itemList.get(i).getMark() == false) {
+                System.out.printf("%d) [%s] %s: %s%n", i,
+                        itemList.get(i).getDate(),
+                        itemList.get(i).getTitle(),
+                        itemList.get(i).getDescription());
+            }
+        }
+        userInput = (input.nextInt() + 1); // make sure this is adding int 1 and not moving next
+        for (int j = 0; j < size; j++) {
+            if(itemList.get(j).getMark() == false) {
+                counter++;
+                if(userInput == counter) {
+                    itemList.get(j).setMark(true);
+                }
+            }
+        }
+
+        try(Formatter f = new Formatter("Todo.txt")) {
+            int k;
+            for (k = 0; k < size; k++) {
+                if (itemList.get(k).getMark() == true) {
+                    f.format("*** [%s] %s: %s%n", itemList.get(k).getDate(),
+                            itemList.get(k).getTitle(),
+                            itemList.get(k).getDescription());
+                } else {
+                    f.format("[%s] %s: %s%n", itemList.get(k).getDate(),
+                            itemList.get(k).getTitle(),
+                            itemList.get(k).getDescription());
+                }
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("y u do dis");
+        }
+    }
+
     public void closeFile() {
 
     }
