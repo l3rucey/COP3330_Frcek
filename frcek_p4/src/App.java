@@ -1,42 +1,53 @@
 import java.io.FileNotFoundException;
 import java.util.Formatter;
+import java.util.Scanner;
 
-// Handles interaction with user
-
-// User should be able to do the following
-//      Create a new tasklist
-//      load an existing tasklist
-//      view the current tasklist
-//      etc.
+// Handles interaction with user (simplify main later)
 public class App {
     public static void main(String[] args) {
-        // Pseudocode
-        // Create a UI menu for the user
-        // Create function that can cycle through the user options
-        //      and envoke the functions in TaskList appropriately
 
-        TaskList l = new TaskList();
-        l.createList();
-        l.addToList();
-        l.addToList();
-        l.addToList();
-        l.viewList();
-        l.editList();
-        l.viewList();
-        l.addToList();
-        l.viewList();
-        l.addToList();
-        l.editList();
-        l.viewList();
-        //l.viewList();
-
-
-        //TaskList l = new TaskList();
-        //l.createList();
-        //l.addToList("Task 1", "i mean we out here", "1997-07-24");
-        //l.addToList("Task 2", "yarg", "1997-07-24");
+//        l.createList();
+//        l.addToList();
+//        l.addToList();
+//        l.editList();
+//        l.viewList();
+//        l.addToList();
+        menuStart();
 
     }
+
+    private static void menuStart() {
+        TaskList list = new TaskList();
+        while(true) {
+            mainMenu();
+            int mainMenuAnswer = getUserInput();
+            if (mainMenuAnswer == 1) {
+                list.createList();
+                while (true) {
+                    opMenu();
+                    int opMenuAnswer = getUserInput();
+
+                    if (opMenuAnswer == 1) {
+                        list.viewList();
+                    } else if (opMenuAnswer == 2) {
+                        list.addToList();
+                    } else if (opMenuAnswer == 3) {
+                        list.editList();
+                    } else {
+                        System.out.println("dont have the other options yet.. sry");
+                    }
+                }
+            } else if (mainMenuAnswer == 2) {
+                System.out.printf("I havent added that functionality yet :D%n");
+            } else {
+                System.exit(0);
+            }
+        }
+    }
+
+//    private static boolean moreUserInput() {
+//        return sum ting wong;
+//    }
 
     // should this be private (also look at other functions)
     private static void mainMenu() {
@@ -46,8 +57,17 @@ public class App {
                 "3) quit%n%n");
     }
 
+    // fix that later
+    private static int getUserInput() {
+        Scanner input = new Scanner(System.in);
+        int num = input.nextInt();
+        input.nextLine();
+        return num;
+    }
+
     private static void opMenu() {
-        System.out.printf("1) view the list%n" +
+        System.out.printf("List Operation Menu%n------------------%n%n" +
+                "1) view the list%n" +
                 "2) add an item%n" +
                 "3) edit an item%n" +
                 "4) remove an item%n" +

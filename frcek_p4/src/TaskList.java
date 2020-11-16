@@ -16,20 +16,13 @@ public class TaskList {
     //private TaskItem item;
     private ArrayList<TaskItem> itemList;
 
-//    // constructor?
-//    public TaskList() {
-//        // somethin
-//    }
-
-    // Creates a list.. sets address of list to public list
-    // Apparently you cant do a formatter by w/o a tryblock.. cant help but feel that
-    // im doing this wrong...
     public void createList() {
         // do we create the itemList here or globally??
         ArrayList<TaskItem> list = new ArrayList<TaskItem>();
         // should we throw exceptions or use a try?
         try {
             File file = new File("Todo.txt");
+            System.out.printf("new task list has been created%n%n");
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -40,12 +33,13 @@ public class TaskList {
         try {
             File temp = new File("Todo.txt");
             Scanner scan = new Scanner(temp);
-            System.out.printf("Current Tasks%n---------%n%n");
+            System.out.printf("Current Tasks%n-------------%n%n");
             int i = 0;
             while(scan.hasNext()) {
                 System.out.printf("%d) %s%n", i, scan.nextLine());
                 i++;
             }
+            System.out.printf("%n");
         } catch (IllegalArgumentException | FileNotFoundException ex) {
             System.out.println("WATER U DOIN");
         }
@@ -75,6 +69,8 @@ public class TaskList {
 
         } catch (IOException ex) {
             System.out.println("u fd up");
+        } catch (NoSuchElementException ex) {
+            System.out.println("sheeeesh");
         }
     }
 
@@ -106,16 +102,16 @@ public class TaskList {
             System.out.println("u meeesssed up");
         }
 
-        try(Formatter f = new Formatter("Todo.txt")) {
-
-            int i, size = itemList.size();
-
-            for (i = 0; i < size; i++) {
-                f.format("[%s] %s: %s%n", itemList.get(i).getDate(), itemList.get(i).getTitle(), itemList.get(i).getDescription());
-            }
-        } catch (FileNotFoundException e) {
-            System.out.println("y u do dis");
-        }
+//        try(Formatter f = new Formatter("Todo.txt")) {
+//
+//            int i, size = itemList.size();
+//
+//            for (i = 0; i < size; i++) {
+//                f.format("[%s] %s: %s%n", itemList.get(i).getDate(), itemList.get(i).getTitle(), itemList.get(i).getDescription());
+//            }
+//        } catch (FileNotFoundException e) {
+//            System.out.println("y u do dis");
+//        }
     }
 
 
