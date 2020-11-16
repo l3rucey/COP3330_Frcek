@@ -49,10 +49,6 @@ public class App {
         }
     }
 
-//    private static boolean moreUserInput() {
-//        return sum ting wong;
-//    }
-
     // should this be private (also look at other functions)
     private static void mainMenu() {
         System.out.printf("Main Menu%n---------%n%n" +
@@ -61,7 +57,6 @@ public class App {
                 "3) quit%n%n");
     }
 
-    // fix that later ... why wont this work... "NoSuchElementException"
     private static int getUserInput() {
         Scanner input = new Scanner(System.in);
         boolean repeat = true;

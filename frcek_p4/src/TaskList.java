@@ -150,34 +150,25 @@ public class TaskList {
     }
 
     public void markItem() {
-        // add safty if itemlist = null
         int size = itemList.size();
-        int counter = 0;
         int userInput = 0;
         Scanner input = new Scanner(System.in);
         System.out.printf("Uncompleted Tasks%n----------------%n%n");
         for (int i = 0; i < size; i++) {
-            if(itemList.get(i).getMark() == false) {
+            if(!itemList.get(i).getMark()) {
                 System.out.printf("%d) [%s] %s: %s%n", i,
                         itemList.get(i).getDate(),
                         itemList.get(i).getTitle(),
                         itemList.get(i).getDescription());
             }
         }
-        userInput = (input.nextInt() + 1); // make sure this is adding int 1 and not moving next
-        for (int j = 0; j < size; j++) {
-            if(itemList.get(j).getMark() == false) {
-                counter++;
-                if(userInput == counter) {
-                    itemList.get(j).setMark(true);
-                }
-            }
-        }
+        userInput = input.nextInt();
+        itemList.get(userInput).setMark(true);
 
         try(Formatter f = new Formatter("Todo.txt")) {
             int k;
             for (k = 0; k < size; k++) {
-                if (itemList.get(k).getMark() == true) {
+                if (itemList.get(k).getMark()) {
                     f.format("*** [%s] %s: %s%n", itemList.get(k).getDate(),
                             itemList.get(k).getTitle(),
                             itemList.get(k).getDescription());
@@ -193,34 +184,25 @@ public class TaskList {
     }
 
     public void unMarkItem() {
-        // add safety if itemlist = null
         int size = itemList.size();
-        int counter = 0;
         int userInput = 0;
         Scanner input = new Scanner(System.in);
-        System.out.printf("Uncompleted Tasks%n----------------%n%n");
+        System.out.printf("Completed Tasks%n----------------%n%n");
         for (int i = 0; i < size; i++) {
-            if(itemList.get(i).getMark() == false) {
+            if(itemList.get(i).getMark()) {
                 System.out.printf("%d) [%s] %s: %s%n", i,
                         itemList.get(i).getDate(),
                         itemList.get(i).getTitle(),
                         itemList.get(i).getDescription());
             }
         }
-        userInput = (input.nextInt() + 1); // make sure this is adding int 1 and not moving next
-        for (int j = 0; j < size; j++) {
-            if(itemList.get(j).getMark() == false) {
-                counter++;
-                if(userInput == counter) {
-                    itemList.get(j).setMark(true);
-                }
-            }
-        }
+        userInput = input.nextInt();
+        itemList.get(userInput).setMark(false);
 
         try(Formatter f = new Formatter("Todo.txt")) {
             int k;
             for (k = 0; k < size; k++) {
-                if (itemList.get(k).getMark() == true) {
+                if (itemList.get(k).getMark()) {
                     f.format("*** [%s] %s: %s%n", itemList.get(k).getDate(),
                             itemList.get(k).getTitle(),
                             itemList.get(k).getDescription());
