@@ -78,9 +78,45 @@ public class TaskList {
         }
     }
 
-//    public void editList() {
-//        itemList
-//    }
+    public void printArray() {
+        int i, size = itemList.size();
+        for (i = 0; i < size; i++) {
+            System.out.printf("listItem[%d] = %s%n",i, itemList.get(i).getTitle());
+        }
+    }
+
+    // fix issue if there is nothing in list
+    // so like "if list == 0 return error and prompt"
+    public void editList() {
+        viewList();
+        try(Scanner scan = new Scanner(System.in)) {
+            TaskItem temp = new TaskItem();
+            int index = scan.nextInt();
+            scan.nextLine();
+            System.out.printf("Enter a new title for task %d: ", index);
+            temp.setTitle(scan.nextLine());
+            System.out.printf("Enter a new description for task %d: ", index);
+            temp.setDescription(scan.nextLine());
+            System.out.printf("Enter a new task due date (YYYY-MM-DD) for task %d: ", index);
+            temp.setDate(scan.nextLine());
+
+            itemList.set(index, temp);
+
+        } catch (Exception ex) {
+            System.out.println("u meeesssed up");
+        }
+
+        try(Formatter f = new Formatter("Todo.txt")) {
+
+            int i, size = itemList.size();
+
+            for (i = 0; i < size; i++) {
+                f.format("[%s] %s: %s%n", itemList.get(i).getDate(), itemList.get(i).getTitle(), itemList.get(i).getDescription());
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("y u do dis");
+        }
+    }
 
 
 

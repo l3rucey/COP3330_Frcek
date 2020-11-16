@@ -18,7 +18,18 @@ public class App {
         TaskList l = new TaskList();
         l.createList();
         l.addToList();
+        l.addToList();
+        l.addToList();
         l.viewList();
+        l.editList();
+        l.viewList();
+        l.addToList();
+        l.viewList();
+        l.addToList();
+        l.editList();
+        l.viewList();
+        //l.viewList();
+
 
         //TaskList l = new TaskList();
         //l.createList();
