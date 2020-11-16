@@ -5,19 +5,12 @@ import java.util.Scanner;
 // Handles interaction with user (simplify main later)
 public class App {
     public static void main(String[] args) {
-
-//        l.createList();
-//        l.addToList();
-//        l.addToList();
-//        l.editList();
-//        l.viewList();
-//        l.addToList();
         menuStart();
-
     }
 
     private static void menuStart() {
         TaskList list = new TaskList();
+        Scanner input = new Scanner(System.in);
         while(true) {
             mainMenu();
             int mainMenuAnswer = getUserInput();
@@ -26,19 +19,25 @@ public class App {
                 while (true) {
                     opMenu();
                     int opMenuAnswer = getUserInput();
-
+                    //int opMenuAnswer = input.nextInt();
                     if (opMenuAnswer == 1) {
                         list.viewList();
+                        //input.nextLine();
                     } else if (opMenuAnswer == 2) {
                         list.addToList();
                     } else if (opMenuAnswer == 3) {
+                        list.viewList();
                         list.editList();
+                    } else if (opMenuAnswer == 4) {
+                        list.removeItem();
+                    } else if (opMenuAnswer == 8) {
+                        break;
                     } else {
-                        System.out.println("dont have the other options yet.. sry");
+                        System.out.println("don't have the other options yet.. sry");
                     }
                 }
             } else if (mainMenuAnswer == 2) {
-                System.out.printf("I havent added that functionality yet :D%n");
+                System.out.printf("I haven't added that functionality yet :D%n");
             } else {
                 System.exit(0);
             }
@@ -57,12 +56,10 @@ public class App {
                 "3) quit%n%n");
     }
 
-    // fix that later
+    // fix that later ... why wont this work... "NoSuchElementException"
     private static int getUserInput() {
         Scanner input = new Scanner(System.in);
-        int num = input.nextInt();
-        input.nextLine();
-        return num;
+        return input.nextInt();
     }
 
     private static void opMenu() {

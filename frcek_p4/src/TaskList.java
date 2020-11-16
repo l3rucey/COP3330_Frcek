@@ -83,12 +83,14 @@ public class TaskList {
 
     // fix issue if there is nothing in list
     // so like "if list == 0 return error and prompt"
+    // WHYYY DID I GET A NOSUCHELEMENTEXCEPTION WHEN THE SCANNER WAS IN THE TRY PARAM...
     public void editList() {
-        viewList();
-        try(Scanner scan = new Scanner(System.in)) {
+        try {
+            Scanner scan = new Scanner(System.in);
             TaskItem temp = new TaskItem();
+            System.out.print("Which task will you edit? ");
             int index = scan.nextInt();
-            scan.nextLine();
+            scan.nextLine(); // for buffer i think.
             System.out.printf("Enter a new title for task %d: ", index);
             temp.setTitle(scan.nextLine());
             System.out.printf("Enter a new description for task %d: ", index);
@@ -102,19 +104,41 @@ public class TaskList {
             System.out.println("u meeesssed up");
         }
 
-//        try(Formatter f = new Formatter("Todo.txt")) {
-//
-//            int i, size = itemList.size();
-//
-//            for (i = 0; i < size; i++) {
-//                f.format("[%s] %s: %s%n", itemList.get(i).getDate(), itemList.get(i).getTitle(), itemList.get(i).getDescription());
-//            }
-//        } catch (FileNotFoundException e) {
-//            System.out.println("y u do dis");
-//        }
+        try(Formatter f = new Formatter("Todo.txt")) {
+
+            int i, size = itemList.size();
+
+            for (i = 0; i < size; i++) {
+                f.format("[%s] %s: %s%n", itemList.get(i).getDate(), itemList.get(i).getTitle(), itemList.get(i).getDescription());
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("y u do dis");
+        }
     }
 
+    public void removeItem() {
+        viewList();
+        try {
+            Scanner scan = new Scanner(System.in);
+            System.out.print("Which task will you remove? ");
+            int index = scan.nextInt();
+            scan.nextLine(); // for buffer i think.
+            itemList.remove(index);
+        } catch (Exception ex) {
+            System.out.println("u meeesssed up");
+        }
 
+        try(Formatter f = new Formatter("Todo.txt")) {
+
+            int i, size = itemList.size();
+
+            for (i = 0; i < size; i++) {
+                f.format("[%s] %s: %s%n", itemList.get(i).getDate(), itemList.get(i).getTitle(), itemList.get(i).getDescription());
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("y u do dis");
+        }
+    }
 
     public void closeFile() {
 
