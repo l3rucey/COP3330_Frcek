@@ -29,6 +29,10 @@ public class TaskList {
         this.itemList = list;
     }
 
+    // i think i need to check if the user decieded to create a new list or load
+    // i can make an if conditional for input 1 or 2 and then this view will
+    // either read from the file in a load option or read from array in a create option
+    // or maybe try and always read from file but if not able then read from array
     public void viewList() {
         try {
             File temp = new File("Todo.txt");
@@ -109,7 +113,10 @@ public class TaskList {
             int i, size = itemList.size();
 
             for (i = 0; i < size; i++) {
-                f.format("[%s] %s: %s%n", itemList.get(i).getDate(), itemList.get(i).getTitle(), itemList.get(i).getDescription());
+                f.format("[%s] %s: %s%n",
+                        itemList.get(i).getDate(),
+                        itemList.get(i).getTitle(),
+                        itemList.get(i).getDescription());
             }
         } catch (FileNotFoundException e) {
             System.out.println("y u do dis");
@@ -133,7 +140,52 @@ public class TaskList {
             int i, size = itemList.size();
 
             for (i = 0; i < size; i++) {
-                f.format("[%s] %s: %s%n", itemList.get(i).getDate(), itemList.get(i).getTitle(), itemList.get(i).getDescription());
+                f.format("[%s] %s: %s%n", itemList.get(i).getDate(),
+                        itemList.get(i).getTitle(),
+                        itemList.get(i).getDescription());
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("y u do dis");
+        }
+    }
+
+    public void markItem() {
+        // add safty if itemlist = null
+        int size = itemList.size();
+        int counter = 0;
+        int userInput = 0;
+        Scanner input = new Scanner(System.in);
+        System.out.printf("Uncompleted Tasks%n----------------%n%n");
+        for (int i = 0; i < size; i++) {
+            if(itemList.get(i).getMark() == false) {
+                System.out.printf("%d) [%s] %s: %s%n", i,
+                        itemList.get(i).getDate(),
+                        itemList.get(i).getTitle(),
+                        itemList.get(i).getDescription());
+            }
+        }
+        userInput = (input.nextInt() + 1); // make sure this is adding int 1 and not moving next
+        for (int j = 0; j < size; j++) {
+            if(itemList.get(j).getMark() == false) {
+                counter++;
+                if(userInput == counter) {
+                    itemList.get(j).setMark(true);
+                }
+            }
+        }
+
+        try(Formatter f = new Formatter("Todo.txt")) {
+            int k;
+            for (k = 0; k < size; k++) {
+                if (itemList.get(k).getMark() == true) {
+                    f.format("*** [%s] %s: %s%n", itemList.get(k).getDate(),
+                            itemList.get(k).getTitle(),
+                            itemList.get(k).getDescription());
+                } else {
+                    f.format("[%s] %s: %s%n", itemList.get(k).getDate(),
+                            itemList.get(k).getTitle(),
+                            itemList.get(k).getDescription());
+                }
             }
         } catch (FileNotFoundException e) {
             System.out.println("y u do dis");

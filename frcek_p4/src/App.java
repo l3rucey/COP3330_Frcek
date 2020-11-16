@@ -30,6 +30,8 @@ public class App {
                         list.editList();
                     } else if (opMenuAnswer == 4) {
                         list.removeItem();
+                    } else if (opMenuAnswer == 5) {
+                        list.markItem();
                     } else if (opMenuAnswer == 8) {
                         break;
                     } else {
