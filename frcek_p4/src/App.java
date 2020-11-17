@@ -45,7 +45,7 @@ public class App {
                     }
                 }
             } else if (mainMenuAnswer == 2) {
-                System.out.printf("I haven't added that functionality yet :D%n");
+                list.loadList();
             } else {
                 System.exit(0);
             }
