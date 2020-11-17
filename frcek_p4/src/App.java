@@ -30,11 +30,14 @@ public class App {
                         list.viewList();
                         list.editList();
                     } else if (opMenuAnswer == 4) {
+                        list.viewList();
                         list.removeItem();
                     } else if (opMenuAnswer == 5) {
                         list.markItem();
                     } else if (opMenuAnswer == 6) {
                         list.unMarkItem();
+                    } else if (opMenuAnswer == 7){
+                        list.saveFile();
                     } else if (opMenuAnswer == 8){
                         break;
                     } else {
@@ -76,7 +79,7 @@ public class App {
     }
 
     private static void opMenu() {
-        System.out.printf("List Operation Menu%n------------------%n%n" +
+        System.out.printf("%nList Operation Menu%n-------------------%n%n" +
                 "1) view the list%n" +
                 "2) add an item%n" +
                 "3) edit an item%n" +
@@ -84,6 +87,6 @@ public class App {
                 "5) mark an item as completed%n" +
                 "6) unmark an item as completed%n" +
                 "7) save the current list%n" +
-                "8) quit to the main menu%n");
+                "8) quit to the main menu%n%n");
     }
 }
