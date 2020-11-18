@@ -9,11 +9,7 @@ import java.util.Formatter;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
-// Contains 0 or more "TaskItems"
-// Encapsulate list data
 public class TaskList {
-    // composition? is this composition and do I want this?
-    //private TaskItem item;
     private ArrayList<TaskItem> itemList;
 
     public void createList() {
@@ -41,18 +37,34 @@ public class TaskList {
         System.out.printf("%n");
     }
 
-    public void addToList() {
+    public void addToList(String title, String description, String date) {
         TaskItem newTask = new TaskItem();
-        Scanner scan = new Scanner(System.in);
-        System.out.printf("Task title: ");
-        newTask.setTitle(scan.nextLine());
-        System.out.printf("Task description: ");
-        newTask.setDescription(scan.nextLine());
-        System.out.printf("Task due date (YYYY-MM-DD): ");
-        newTask.setDate(scan.nextLine());
-
-        itemList.add(newTask);
+        try {
+            if(title.length() < 1) {
+                throw new IllegalArgumentException("ERROR: A title needs to be 1 or more characters in length");
+            }
+            newTask.setTitle(title);
+            newTask.setDescription(description);
+            // didn't have time to do full validation
+            if(date.length() != 10) {
+                throw new IllegalArgumentException("ERROR: A due date needs to be in the format of YYYY-MM-DD");
+            }
+            newTask.setDate(date);
+            itemList.add(newTask);
+        } catch (IllegalArgumentException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
+
+//    public void _addToList(TaskItem i) {
+//        itemList.add(i);
+//    }
+
+
+//
+//    public void _addToList(String title, String description, String date) {
+//        TaskItem
+//    }
 
 //    public void printArray() {
 //        int i, size = itemList.size();
@@ -61,118 +73,88 @@ public class TaskList {
 //        }
 //    }
 
-    // fix issue if there is nothing in list
-    // so like "if list == 0 return error and prompt"
-    // WHYYY DID I GET A NOSUCHELEMENTEXCEPTION WHEN THE SCANNER WAS IN THE TRY PARAM...
-    public void editList() {
+    public void editList(int index, int size, String title, String description, String date) {
+        TaskItem temp = new TaskItem();
         try {
-            Scanner scan = new Scanner(System.in);
-            TaskItem temp = new TaskItem();
-            System.out.print("Which task will you edit? ");
-            int index = scan.nextInt();
-            scan.nextLine(); // for buffer i think.
-            System.out.printf("Enter a new title for task %d: ", index);
-            temp.setTitle(scan.nextLine());
-            System.out.printf("Enter a new description for task %d: ", index);
-            temp.setDescription(scan.nextLine());
-            System.out.printf("Enter a new task due date (YYYY-MM-DD) for task %d: ", index);
-            temp.setDate(scan.nextLine());
-
+            if (size == 0) {
+                throw new IllegalArgumentException("ERROR: No existing tasks");
+            }
+            if(index > size || index < 0) {
+                throw new IllegalArgumentException("ERROR: Choose an available index");
+            }
+            temp.setTitle(title);
+            temp.setDescription(description);
+            temp.setDate(date);
             itemList.set(index, temp);
-
-        } catch (Exception ex) {
-            System.out.println("u meeesssed up");
+        } catch (IllegalArgumentException ex) {
+            System.out.println(ex.getMessage());
         }
     }
 
-    public void removeItem() {
+    public void removeItem(int index) {
         try {
-            Scanner scan = new Scanner(System.in);
-            System.out.print("Which task will you remove? ");
-            int index = scan.nextInt();
-            scan.nextLine(); // for buffer i think.
             itemList.remove(index);
         } catch (Exception ex) {
-            System.out.println("u meeesssed up");
+            System.out.println("Enter proper index or no tasks available to remove");
         }
     }
 
-    public void markItem() {
-        int size = itemList.size();
-        int userInput = 0;
-        Scanner input = new Scanner(System.in);
-        System.out.printf("Uncompleted Tasks%n----------------%n%n");
-        for (int i = 0; i < size; i++) {
-            if(!itemList.get(i).getMark()) {
-                System.out.printf("%d) [%s] %s: %s%n", i,
-                        itemList.get(i).getDate(),
-                        itemList.get(i).getTitle(),
-                        itemList.get(i).getDescription());
+    public void markItem(int userInput, int uncompletedListSize) {
+        try {
+            if(uncompletedListSize == 0) {
+                throw new IllegalArgumentException("ERROR: There are no uncompleted tasks");
             }
+            if(userInput > uncompletedListSize || userInput < 0) {
+                throw new IllegalArgumentException("ERROR: Choose an existing task");
+            }
+            itemList.get(userInput).setMark(true);
+        } catch (IllegalArgumentException ex) {
+            System.out.println(ex.getMessage());
         }
-        userInput = input.nextInt();
-        itemList.get(userInput).setMark(true);
     }
 
-    public void unMarkItem() {
-        int size = itemList.size();
-        int userInput = 0;
-        Scanner input = new Scanner(System.in);
-        System.out.printf("Completed Tasks%n----------------%n%n");
-        for (int i = 0; i < size; i++) {
-            if(itemList.get(i).getMark()) {
-                System.out.printf("%d) [%s] %s: %s%n", i,
-                        itemList.get(i).getDate(),
-                        itemList.get(i).getTitle(),
-                        itemList.get(i).getDescription());
-            }
-        }
-        userInput = input.nextInt();
+    public void unMarkItem(int userInput) {
         itemList.get(userInput).setMark(false);
     }
 
-    public void saveFile() {
-        String fileName;
-        Scanner input = new Scanner(System.in);
-        System.out.print("Enter the filename to save as: ");
-        fileName = input.nextLine();
+    public void saveFile(String fileName) {
         try {
             Formatter file = new Formatter(fileName);
             for (TaskItem item: itemList) {
-                file.format("[%s] %s: %s%n",
+                file.format("%s %s %s%n",
                         item.getDate(),
                         item.getTitle(),
                         item.getDescription());
             }
             file.close();
             System.out.println("task list has been saved");
-        } catch (IOException ex) {
+        } catch (Exception ex) {
             System.out.println("u meeesxdfsdf upsadfasfd");
         }
+        System.out.println("");
     }
 
-    public void loadList() {
-        Scanner input = new Scanner(System.in);
-        String fileName;
-        System.out.print("Enter the filename to load: ");
-        fileName = input.nextLine();
+    public void loadList(String fileName) {
         try {
             File file = new File(fileName);
             Scanner scan = new Scanner(file);
             ArrayList<TaskItem> list = new ArrayList<TaskItem>();
-            TaskItem temp = new TaskItem();
             while(scan.hasNext()) {
+                TaskItem temp = new TaskItem();
                 temp.setDate(scan.next()); // how to index with scan.next()[1- or 1, ]
                 temp.setTitle(scan.next());
                 temp.setDescription(scan.next());
                 list.add(temp);
             }
             this.itemList = list;
+            System.out.printf("task list has been loaded%n%n");
         } catch (Exception ex) {
             System.out.println("File does not exist!");
         }
+    }
 
-        System.out.printf("task list has been loaded%n%n");
+    public ArrayList<TaskItem> getItemList() {
+        return this.itemList;
     }
 
 }
