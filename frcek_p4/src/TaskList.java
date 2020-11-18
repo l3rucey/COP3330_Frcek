@@ -113,8 +113,18 @@ public class TaskList {
         }
     }
 
-    public void unMarkItem(int userInput) {
-        itemList.get(userInput).setMark(false);
+    public void unMarkItem(int userInput, int completedListSize) {
+        try {
+            if(completedListSize == 0) {
+                throw new IllegalArgumentException("ERROR: There are no Completed tasks");
+            }
+            if(userInput > completedListSize || userInput < 0) {
+                throw new IllegalArgumentException("ERROR: Choose an existing task");
+            }
+            itemList.get(userInput).setMark(false);
+        } catch (IllegalArgumentException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     public void saveFile(String fileName) {

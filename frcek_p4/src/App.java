@@ -183,6 +183,7 @@ public class App {
     private static void _unMarkItem(TaskList list) {
         int size = list.getItemList().size();
         int userInput;
+        int completedListSize = 0;
         Scanner input = new Scanner(System.in);
         System.out.printf("Completed Tasks%n----------------%n%n");
         for (int i = 0; i < size; i++) {
@@ -191,10 +192,11 @@ public class App {
                         list.getItemList().get(i).getDate(),
                         list.getItemList().get(i).getTitle(),
                         list.getItemList().get(i).getDescription());
+                completedListSize++;
             }
         }
         userInput = input.nextInt();
-        list.unMarkItem(userInput);
+        list.unMarkItem(userInput, completedListSize);
     }
 
     private static void _saveFile(TaskList list) {

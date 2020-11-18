@@ -22,6 +22,15 @@ class TaskTests {
     }
 
     @Test
+    public void uncompletingTaskItemFailsWithInvalidIndex() {
+        TaskList list = new TaskList();
+        list.createList();
+        list.addToList("task 1", "desc", "1997-09-09");
+        list.markItem(0, 1);
+        assertTrue(list.getItemList().get(0).getMark());
+    }
+
+    @Test
     public void newTaskListIsEmpty() {
         TaskList list = new TaskList();
         list.createList();
@@ -61,7 +70,7 @@ class TaskTests {
         list.createList();
         list.addToList("task 1", "desc", "1997-09-09");
         list.markItem(0, 1);
-        list.unMarkItem(0);
+        list.unMarkItem(0, 1);
         assertFalse(list.getItemList().get(0).getMark());
         //assertEquals(true, list.getItemList().get(0).getMark());
     }
@@ -150,6 +159,24 @@ class TaskTests {
         list.addToList("task 1", "desc", "1997-09-09");
         list.editList(3, 1,"task 1", "new desc", "1997-07-24");
         assertEquals("desc", list.getItemList().get(0).getDescription());
+    }
+
+    @Test
+    public void editingTaskItemDueDateFailsWithInvalidIndex() {
+        TaskList list = new TaskList();
+        list.createList();
+        list.addToList("task 1", "desc", "1997-09-09");
+        list.editList(3, 1,"task 1", "new desc", "1997-08-20");
+        assertEquals("1997-09-09", list.getItemList().get(0).getDate());
+    }
+
+    @Test
+    public void editingTaskItemTitleFailsWithInvalidIndex() {
+        TaskList list = new TaskList();
+        list.createList();
+        list.addToList("task 1", "desc", "1997-09-09");
+        list.editList(3, 1,"task 50", "new desc", "1997-07-24");
+        assertEquals("task 1", list.getItemList().get(0).getTitle());
     }
 
 }
