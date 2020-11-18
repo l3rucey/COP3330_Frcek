@@ -153,12 +153,13 @@ public class App {
 
     private static void _removeItem(TaskList list) {
         int index;
+        int size = list.getItemList().size();
         Scanner input = new Scanner(System.in);
         System.out.print("Which task will you remove? ");
         index = input.nextInt();
         input.nextLine();
 
-        list.removeItem(index);
+        list.removeItem(index, size);
     }
 
     private static void _markItem(TaskList list) {

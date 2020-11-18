@@ -58,7 +58,7 @@ class TaskTests {
         list.createList();
         list.addToList("task 1", "desc", "1997-09-09");
         list.addToList("task 2", "desc2", "1997-08-09");
-        list.removeItem(0);
+        list.removeItem(0, 2);
         int size = list.getItemList().size();
         assertEquals(1, size);
     }
@@ -73,6 +73,27 @@ class TaskTests {
         list.unMarkItem(0, 1);
         assertFalse(list.getItemList().get(0).getMark());
         //assertEquals(true, list.getItemList().get(0).getMark());
+    }
+
+    @Test
+    public void savedTaskListCanBeLoaded() {
+        TaskList list = new TaskList();
+        list.createList();
+        list.addToList("task 1", "desc", "1997-09-09");
+        list.saveFile("save.txt");
+        list.loadList("save.txt");
+        assertEquals(1, list.getItemList().size());
+    }
+
+    @Test
+    public void removingTaskItemsFailsWithInvalidIndex() {
+        TaskList list = new TaskList();
+        list.createList();
+        list.addToList("task 1", "desc", "1997-09-09");
+        list.addToList("task 2", "desc2", "1997-08-09");
+        list.removeItem(3, 2);
+        int size = list.getItemList().size();
+        assertEquals(2, size);
     }
 
 //    // come back to this

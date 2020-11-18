@@ -56,23 +56,6 @@ public class TaskList {
         }
     }
 
-//    public void _addToList(TaskItem i) {
-//        itemList.add(i);
-//    }
-
-
-//
-//    public void _addToList(String title, String description, String date) {
-//        TaskItem
-//    }
-
-//    public void printArray() {
-//        int i, size = itemList.size();
-//        for (i = 0; i < size; i++) {
-//            System.out.printf("listItem[%d] = %s%n",i, itemList.get(i).getTitle());
-//        }
-//    }
-
     public void editList(int index, int size, String title, String description, String date) {
         TaskItem temp = new TaskItem();
         try {
@@ -91,8 +74,14 @@ public class TaskList {
         }
     }
 
-    public void removeItem(int index) {
+    public void removeItem(int index, int size) {
         try {
+            if (size == 0) {
+                throw new IllegalArgumentException("ERROR: No existing tasks");
+            }
+            if(index > size || index < 0) {
+                throw new IllegalArgumentException("ERROR: Choose an available index");
+            }
             itemList.remove(index);
         } catch (Exception ex) {
             System.out.println("Enter proper index or no tasks available to remove");
