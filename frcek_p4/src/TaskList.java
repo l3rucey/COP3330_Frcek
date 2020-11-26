@@ -140,15 +140,17 @@ public class TaskList {
             ArrayList<TaskItem> list = new ArrayList<TaskItem>();
             while(scan.hasNext()) {
                 TaskItem temp = new TaskItem();
-                temp.setDate(scan.next()); // how to index with scan.next()[1- or 1, ]
+                temp.setDate(scan.next());
                 temp.setTitle(scan.next());
                 temp.setDescription(scan.next());
                 list.add(temp);
             }
             this.itemList = list;
             System.out.printf("task list has been loaded%n%n");
-        } catch (Exception ex) {
+        } catch (FileNotFoundException ex) {
             System.out.println("File does not exist!");
+        } catch (Exception ex) {
+            System.out.println("what just happened!??");
         }
     }
 
