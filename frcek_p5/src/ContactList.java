@@ -1,2 +1,54 @@
+import java.util.ArrayList;
+
 public class ContactList {
+    private ArrayList<ContactItem> contactList;
+
+    public void createList() {
+        ArrayList<ContactItem> list = new ArrayList<ContactItem>();
+        System.out.printf("new contact list has been created%n%n");
+        this.contactList = list;
+    }
+
+    public void viewList() {
+        int size = contactList.size();
+        System.out.printf("Current Contacts%n-------------%n%n");
+        for (int i = 0; i < size; i++) {
+//            if(itemList.get(i).getMark()) {
+//                System.out.printf("*** %d) [%s] %s: %s%n", i,
+//                        itemList.get(i).getDate(),
+//                        itemList.get(i).getTitle(),
+//                        itemList.get(i).getDescription());
+//            } else {
+//                System.out.printf("%d) [%s] %s: %s%n", i,
+//                        itemList.get(i).getDate(),
+//                        itemList.get(i).getTitle(),
+//                        itemList.get(i).getDescription());
+//            }
+            System.out.printf("%d) Name: %s%n Phone: %s%n Email: ", i,
+                        contactList.get(i).getFirstName(),
+                        contactList.get(i).getLastName(),
+                        contactList.get(i).getEmail(),
+                        contactList.get(i).getPhoneNumber());
+        }
+        System.out.printf("%n");
+    }
+
+    public void addToList(String title, String description, String date) {
+        TaskItem newTask = new TaskItem();
+        try {
+            if(title.length() < 1) {
+                throw new IllegalArgumentException("ERROR: A title needs to be 1 or more characters in length");
+            }
+            newTask.setTitle(title);
+            newTask.setDescription(description);
+            // didn't have time to do full validation
+            if(date.length() != 10) {
+                throw new IllegalArgumentException("ERROR: A due date needs to be in the format of YYYY-MM-DD");
+            }
+            newTask.setDate(date);
+            itemList.add(newTask);
+        } catch (IllegalArgumentException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
 }
