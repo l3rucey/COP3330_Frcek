@@ -24,7 +24,7 @@ public class ContactList {
 //                        itemList.get(i).getTitle(),
 //                        itemList.get(i).getDescription());
 //            }
-            System.out.printf("%d) Name: %s%n Phone: %s%n Email: ", i,
+            System.out.printf("%d) Name: %s%n Phone: %s%n Email: %s%n PhoneNumber %s%n", i,
                         contactList.get(i).getFirstName(),
                         contactList.get(i).getLastName(),
                         contactList.get(i).getEmail(),
@@ -33,22 +33,46 @@ public class ContactList {
         System.out.printf("%n");
     }
 
-    public void addToList(String title, String description, String date) {
-        TaskItem newTask = new TaskItem();
+    public void addToList(String firstName, String lastName, String email, String phoneNumber) {
+        ContactItem newContact = new ContactItem();
         try {
-            if(title.length() < 1) {
-                throw new IllegalArgumentException("ERROR: A title needs to be 1 or more characters in length");
-            }
-            newTask.setTitle(title);
-            newTask.setDescription(description);
-            // didn't have time to do full validation
-            if(date.length() != 10) {
-                throw new IllegalArgumentException("ERROR: A due date needs to be in the format of YYYY-MM-DD");
-            }
-            newTask.setDate(date);
-            itemList.add(newTask);
+//            if(title.length() < 1) {
+//                throw new IllegalArgumentException("ERROR: A title needs to be 1 or more characters in length");
+//            }
+            newContact.setFirstName(firstName);
+            newContact.setLastName(lastName);
+//            // didn't have time to do full validation
+//            if(date.length() != 10) {
+//                throw new IllegalArgumentException("ERROR: A due date needs to be in the format of YYYY-MM-DD");
+//            }
+            newContact.setEmail(email);
+            newContact.setPhoneNumber(phoneNumber);
+            contactList.add(newContact);
         } catch (IllegalArgumentException ex) {
             System.out.println(ex.getMessage());
         }
+    }
+
+    public void editList(int index, int size, String firstName, String lastName, String email, String phoneNumber) {
+        ContactItem temp = new ContactItem();
+        try {
+            if (size == 0) {
+                throw new IllegalArgumentException("ERROR: No existing tasks");
+            }
+            if(index > size || index < 0) {
+                throw new IllegalArgumentException("ERROR: Choose an available index");
+            }
+            temp.setFirstName(firstName);
+            temp.setLastName(lastName);
+            temp.setEmail(email);
+            temp.setPhoneNumber(phoneNumber);
+            contactList.set(index, temp);
+        } catch (IllegalArgumentException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    public ArrayList<ContactItem> getContactList() {
+        return this.contactList;
     }
 }

@@ -27,6 +27,7 @@ class TaskListTest {
         list.createList();
         list.addToList("task 1", "desc", "1997-09-09");
         list.markItem(0, 1);
+
         assertTrue(list.getItemList().get(0).getMark());
     }
 
