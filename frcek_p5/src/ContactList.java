@@ -55,6 +55,28 @@ public class ContactList {
 
     public void editList(int index, int size, String firstName, String lastName, String email, String phoneNumber) {
         ContactItem temp = new ContactItem();
+
+        if (!firstName.isBlank() && !lastName.isBlank() && !email.isBlank() && !phoneNumber.isBlank()) {
+            try {
+                if (size == 0) {
+                    throw new IllegalArgumentException("ERROR: No existing tasks");
+                }
+                if (index > size || index < 0) {
+                    throw new IllegalArgumentException("ERROR: Choose an available index");
+                }
+                temp.setFirstName(firstName);
+                temp.setLastName(lastName);
+                temp.setEmail(email);
+                temp.setPhoneNumber(phoneNumber);
+                contactList.set(index, temp);
+            } catch (IllegalArgumentException ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
+        System.out.println("ERROR: All entries cannot be left blank");
+    }
+
+    public void removeItem(int index, int size) {
         try {
             if (size == 0) {
                 throw new IllegalArgumentException("ERROR: No existing tasks");
@@ -62,13 +84,9 @@ public class ContactList {
             if(index > size || index < 0) {
                 throw new IllegalArgumentException("ERROR: Choose an available index");
             }
-            temp.setFirstName(firstName);
-            temp.setLastName(lastName);
-            temp.setEmail(email);
-            temp.setPhoneNumber(phoneNumber);
-            contactList.set(index, temp);
-        } catch (IllegalArgumentException ex) {
-            System.out.println(ex.getMessage());
+            contactList.remove(index);
+        } catch (Exception ex) {
+            System.out.println("Enter proper index or no tasks available to remove");
         }
     }
 
