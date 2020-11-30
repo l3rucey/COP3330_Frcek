@@ -38,29 +38,23 @@ public class ContactList {
     }
 
     public void addToList(String firstName, String lastName, String phoneNumber, String email) {
-        ContactItem newContact = new ContactItem();
-        try {
-//            if(title.length() < 1) {
-//                throw new IllegalArgumentException("ERROR: A title needs to be 1 or more characters in length");
-//            }
-            newContact.setFirstName(firstName);
-            newContact.setLastName(lastName);
-//            // didn't have time to do full validation
-//            if(date.length() != 10) {
-//                throw new IllegalArgumentException("ERROR: A due date needs to be in the format of YYYY-MM-DD");
-//            }
-            newContact.setPhoneNumber(phoneNumber);
-            newContact.setEmail(email);
-            contactList.add(newContact);
-        } catch (IllegalArgumentException ex) {
-            System.out.println(ex.getMessage());
-        }
+        ContactItem newContact = new ContactItem(firstName, lastName, phoneNumber, email);
+        contactList.add(newContact);
+//        try {
+//            newContact.setFirstName(firstName);
+//            newContact.setLastName(lastName);
+//            newContact.setPhoneNumber(phoneNumber);
+//            newContact.setEmail(email);
+//            contactList.add(newContact);
+//        } catch (IllegalArgumentException ex) {
+//            System.out.println(ex.getMessage());
+//        }
     }
 
     public void editList(int index, int size, String firstName, String lastName, String phoneNumber, String email) {
-        ContactItem temp = new ContactItem();
+        //ContactItem temp = new ContactItem(firstName, lastName, phoneNumber, email);
 
-        if (!firstName.isBlank() && !lastName.isBlank() && !phoneNumber.isBlank() && !email.isBlank()) {
+        if (!firstName.isBlank() || !lastName.isBlank() || !phoneNumber.isBlank() || !email.isBlank()) {
             try {
                 if (size == 0) {
                     throw new IllegalArgumentException("ERROR: No existing tasks");
@@ -68,10 +62,11 @@ public class ContactList {
                 if (index > size || index < 0) {
                     throw new IllegalArgumentException("ERROR: Choose an available index");
                 }
-                temp.setFirstName(firstName);
-                temp.setLastName(lastName);
-                temp.setPhoneNumber(phoneNumber);
-                temp.setEmail(email);
+                ContactItem temp = new ContactItem(firstName, lastName, phoneNumber, email);
+//                temp.setFirstName(firstName);
+//                temp.setLastName(lastName);
+//                temp.setPhoneNumber(phoneNumber);
+//                temp.setEmail(email);
                 contactList.set(index, temp);
             } catch (IllegalArgumentException ex) {
                 System.out.println(ex.getMessage());
@@ -119,11 +114,19 @@ public class ContactList {
             Scanner scan = new Scanner(file);
             ArrayList<ContactItem> list = new ArrayList<ContactItem>();
             while(scan.hasNext()) {
-                ContactItem temp = new ContactItem();
-                temp.setFirstName(scan.next());
-                temp.setLastName(scan.next());
-                temp.setPhoneNumber(scan.next());
-                temp.setEmail(scan.next());
+                String firstName;
+                String lastName;
+                String phoneNumber;
+                String email;
+                firstName = scan.next();
+                lastName = scan.next();
+                phoneNumber = scan.next();
+                email = scan.next();
+                ContactItem temp = new ContactItem(firstName, lastName, phoneNumber, email);
+//                temp.setFirstName(scan.next());
+//                temp.setLastName(scan.next());
+//                temp.setPhoneNumber(scan.next());
+//                temp.setEmail(scan.next());
                 list.add(temp);
             }
             this.contactList = list;

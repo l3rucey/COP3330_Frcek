@@ -11,6 +11,28 @@ public class ContactItem {
     private String phoneNumber;
     private String email;
 
+    public ContactItem(String firstName, String lastName, String phoneNumber, String email) {
+        if (!firstName.isBlank() || !lastName.isBlank() || !phoneNumber.isBlank() || !email.isBlank()) {
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.phoneNumber = phoneNumber;
+            this.email = email;
+            setFirstName(firstName);
+            setLastName(lastName);
+            setPhoneNumber(phoneNumber);
+            setEmail(email);
+        } else {
+            System.out.println("ERROR: All entries cannot be blank");
+        }
+//        this.firstName = firstName;
+//        this.lastName = lastName;
+//        this.phoneNumber = phoneNumber;
+//        this.email = email;
+//        if (firstName.isBlank()) {
+//            System.out.println("firstname is blank");
+//        }
+    }
+
     public String getFirstName() {
         return this.firstName;
     }
