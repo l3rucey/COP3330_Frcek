@@ -200,5 +200,4 @@ class TaskListTest {
         list.editList(3, 1,"task 50", "new desc", "1997-07-24");
         assertEquals("task 1", list.getItemList().get(0).getTitle());
     }
-
 }

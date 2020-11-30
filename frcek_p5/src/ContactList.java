@@ -1,4 +1,8 @@
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Formatter;
+import java.util.Scanner;
 
 public class ContactList {
     private ArrayList<ContactItem> contactList;
@@ -87,6 +91,46 @@ public class ContactList {
             contactList.remove(index);
         } catch (Exception ex) {
             System.out.println("Enter proper index or no tasks available to remove");
+        }
+    }
+
+    public void saveFile(String fileName) {
+        try {
+            Formatter file = new Formatter(fileName);
+            for (ContactItem item: contactList) {
+                file.format("%s %s %s %s%n",
+                        item.getFirstName(),
+                        item.getLastName(),
+                        item.getEmail(),
+                        item.getPhoneNumber());
+            }
+            file.close();
+            System.out.println("task list has been saved");
+        } catch (Exception ex) {
+            System.out.println("u meeesxdfsdf upsadfasfd");
+        }
+        System.out.println("");
+    }
+
+    public void loadList(String fileName) {
+        try {
+            File file = new File(fileName);
+            Scanner scan = new Scanner(file);
+            ArrayList<ContactItem> list = new ArrayList<ContactItem>();
+            while(scan.hasNext()) {
+                ContactItem temp = new ContactItem();
+                temp.setFirstName(scan.next());
+                temp.setLastName(scan.next());
+                temp.setPhoneNumber(scan.next());
+                temp.setEmail(scan.next());
+                list.add(temp);
+            }
+            this.contactList = list;
+            System.out.printf("contact list has been loaded%n%n");
+        } catch (FileNotFoundException ex) {
+            System.out.println("File does not exist!");
+        } catch (Exception ex) {
+            System.out.println("what just happened!??");
         }
     }
 

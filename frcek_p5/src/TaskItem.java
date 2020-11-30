@@ -1,6 +1,3 @@
-import java.io.FileNotFoundException;
-import java.util.Formatter;
-
 // Contains a "title" (1 or more 'char' in len)
 // Contains a "desc" (0 or more 'char' in len)
 // Contains a "due date" (in this format YYYY-MM-DD)

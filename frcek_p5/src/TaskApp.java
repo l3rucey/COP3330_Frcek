@@ -12,15 +12,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 // Handles interaction with user (simplify main later)
 public class TaskApp {
-    public static void main(String[] args) {
-        menuStart();
-    }
 
-    private static void menuStart() {
+    public void menuStart() {
         TaskList taskList = new TaskList(); // instantiation of a TaskList
         //ContactList contactList = new ContactList(); // instantiation of a ContactList
         Scanner input = new Scanner(System.in);
-        while(true) {
+        while (true) {
             mainMenu();
             int mainMenuAnswer = getUserInput();
             if (mainMenuAnswer == 1) {
@@ -43,9 +40,9 @@ public class TaskApp {
                         _markItem(taskList);
                     } else if (opMenuAnswer == 6) {
                         _unMarkItem(taskList);
-                    } else if (opMenuAnswer == 7){
+                    } else if (opMenuAnswer == 7) {
                         _saveFile(taskList);
-                    } else if (opMenuAnswer == 8){
+                    } else if (opMenuAnswer == 8) {
                         break;
                     } else {
                         System.out.println("ERROR! Enter an integer value between [1-8] inclusive");
@@ -71,9 +68,9 @@ public class TaskApp {
                         _markItem(taskList);
                     } else if (opMenuAnswer == 6) {
                         _unMarkItem(taskList);
-                    } else if (opMenuAnswer == 7){
+                    } else if (opMenuAnswer == 7) {
                         _saveFile(taskList);
-                    } else if (opMenuAnswer == 8){
+                    } else if (opMenuAnswer == 8) {
                         break;
                     } else {
                         System.out.println("ERROR! Enter an integer value between [1-8] inclusive");
@@ -87,7 +84,7 @@ public class TaskApp {
 
     private static void mainMenu() {
         System.out.printf("Main Menu%n---------%n%n" +
-                "1) create a new taskList%n" +
+                "1) create a new list%n" +
                 "2) load an existing list%n" +
                 "3) quit%n%n");
     }
@@ -97,7 +94,7 @@ public class TaskApp {
         boolean repeat = true;
         int answer = 0;
 
-        while(repeat) {
+        while (repeat) {
             try {
                 answer = input.nextInt();
                 repeat = false;
@@ -111,7 +108,7 @@ public class TaskApp {
     }
 
     private static void _addToList(TaskList list) {
-        TaskItem newTask = new TaskItem();
+        //TaskItem newTask = new TaskItem(); I dont need this right??
         Scanner input = new Scanner(System.in);
 
         String title;
@@ -170,7 +167,7 @@ public class TaskApp {
         Scanner input = new Scanner(System.in);
         System.out.printf("Uncompleted Tasks%n----------------%n%n");
         for (int i = 0; i < size; i++) {
-            if(!list.getItemList().get(i).getMark()) {
+            if (!list.getItemList().get(i).getMark()) {
                 System.out.printf("%d) [%s] %s: %s%n", i,
                         list.getItemList().get(i).getDate(),
                         list.getItemList().get(i).getTitle(),
@@ -189,7 +186,7 @@ public class TaskApp {
         Scanner input = new Scanner(System.in);
         System.out.printf("Completed Tasks%n----------------%n%n");
         for (int i = 0; i < size; i++) {
-            if(list.getItemList().get(i).getMark()) {
+            if (list.getItemList().get(i).getMark()) {
                 System.out.printf("%d) [%s] %s: %s%n", i,
                         list.getItemList().get(i).getDate(),
                         list.getItemList().get(i).getTitle(),
