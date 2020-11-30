@@ -77,7 +77,7 @@ public class TaskApp {
                     }
                 }
             } else {
-                System.exit(0);
+                break;
             }
         }
     }
