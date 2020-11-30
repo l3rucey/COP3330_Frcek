@@ -13,12 +13,15 @@ public class App {
         while(true) {
             appSelectMenu();
             int menuAnswer = getUserInput();
+            System.out.printf("%n");
             if(menuAnswer == 1) {
                 taskApp.menuStart();
             } else if (menuAnswer == 2) {
                 contactApp.menuStart();
-            } else {
+            } else if (menuAnswer == 3) {
                 break;
+            } else {
+                System.out.println("ERROR: Enter an integer value [1-3] inclusive");
             }
         }
     }

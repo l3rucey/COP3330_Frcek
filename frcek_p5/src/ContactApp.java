@@ -58,7 +58,8 @@ public class ContactApp {
                     }
                 }
             } else {
-                System.exit(0); // be careful
+                break;
+                //System.exit(0); // be careful
             }
         }
     }
@@ -113,7 +114,7 @@ public class ContactApp {
         lastName = input.nextLine();
         System.out.print("Phone number (xxx-xxx-xxxx): ");
         phoneNumber = input.nextLine();
-        System.out.println("Email address: ");
+        System.out.print("Email address (x@y.z): ");
         email = input.nextLine();
 
         list.addToList(firstName, lastName, phoneNumber, email);

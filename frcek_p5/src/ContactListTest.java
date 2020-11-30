@@ -7,7 +7,7 @@ public class ContactListTest {
     public void addingItemsIncreasesSize() {
         ContactList contactList = new ContactList();
         contactList.createList();
-        contactList.addToList("Rob", "Jobs", "itakeurjob@sorry.edu", "1-800-sorry-bro");
+        contactList.addToList("Rob", "Jobs", "itakeurjob@sorry.edu", "1-800-sorry-man");
         int size = contactList.getContactList().size();
         assertEquals(1, size);
     }

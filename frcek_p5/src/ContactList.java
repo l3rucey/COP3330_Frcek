@@ -28,16 +28,16 @@ public class ContactList {
 //                        itemList.get(i).getTitle(),
 //                        itemList.get(i).getDescription());
 //            }
-            System.out.printf("%d) Name: %s%n Phone: %s%n Email: %s%n PhoneNumber %s%n", i,
+            System.out.printf("%d) Name: %s %s%n Phone: %s%n Email: %s%n", i,
                         contactList.get(i).getFirstName(),
                         contactList.get(i).getLastName(),
-                        contactList.get(i).getEmail(),
-                        contactList.get(i).getPhoneNumber());
+                        contactList.get(i).getPhoneNumber(),
+                        contactList.get(i).getEmail());
         }
         System.out.printf("%n");
     }
 
-    public void addToList(String firstName, String lastName, String email, String phoneNumber) {
+    public void addToList(String firstName, String lastName, String phoneNumber, String email) {
         ContactItem newContact = new ContactItem();
         try {
 //            if(title.length() < 1) {
@@ -49,18 +49,18 @@ public class ContactList {
 //            if(date.length() != 10) {
 //                throw new IllegalArgumentException("ERROR: A due date needs to be in the format of YYYY-MM-DD");
 //            }
-            newContact.setEmail(email);
             newContact.setPhoneNumber(phoneNumber);
+            newContact.setEmail(email);
             contactList.add(newContact);
         } catch (IllegalArgumentException ex) {
             System.out.println(ex.getMessage());
         }
     }
 
-    public void editList(int index, int size, String firstName, String lastName, String email, String phoneNumber) {
+    public void editList(int index, int size, String firstName, String lastName, String phoneNumber, String email) {
         ContactItem temp = new ContactItem();
 
-        if (!firstName.isBlank() && !lastName.isBlank() && !email.isBlank() && !phoneNumber.isBlank()) {
+        if (!firstName.isBlank() && !lastName.isBlank() && !phoneNumber.isBlank() && !email.isBlank()) {
             try {
                 if (size == 0) {
                     throw new IllegalArgumentException("ERROR: No existing tasks");
@@ -70,14 +70,15 @@ public class ContactList {
                 }
                 temp.setFirstName(firstName);
                 temp.setLastName(lastName);
-                temp.setEmail(email);
                 temp.setPhoneNumber(phoneNumber);
+                temp.setEmail(email);
                 contactList.set(index, temp);
             } catch (IllegalArgumentException ex) {
                 System.out.println(ex.getMessage());
             }
+        } else {
+            System.out.println("ERROR: All entries cannot be left blank");
         }
-        System.out.println("ERROR: All entries cannot be left blank");
     }
 
     public void removeItem(int index, int size) {
