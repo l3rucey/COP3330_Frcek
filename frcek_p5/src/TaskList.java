@@ -38,18 +38,18 @@ public class TaskList {
     }
 
     public void addToList(String title, String description, String date) {
-        TaskItem newTask = new TaskItem();
         try {
             if(title.length() < 1) {
                 throw new IllegalArgumentException("ERROR: A title needs to be 1 or more characters in length");
             }
-            newTask.setTitle(title);
-            newTask.setDescription(description);
             // didn't have time to do full validation
             if(date.length() != 10) {
                 throw new IllegalArgumentException("ERROR: A due date needs to be in the format of YYYY-MM-DD");
             }
-            newTask.setDate(date);
+//            newTask.setTitle(title);
+//            newTask.setDescription(description);
+//            newTask.setDate(date);
+            TaskItem newTask = new TaskItem(title, description, date);
             itemList.add(newTask);
         } catch (IllegalArgumentException ex) {
             System.out.println(ex.getMessage());
@@ -57,7 +57,6 @@ public class TaskList {
     }
 
     public void editList(int index, int size, String title, String description, String date) {
-        TaskItem temp = new TaskItem();
         try {
             if (size == 0) {
                 throw new IllegalArgumentException("ERROR: No existing tasks");
@@ -65,9 +64,14 @@ public class TaskList {
             if(index > size || index < 0) {
                 throw new IllegalArgumentException("ERROR: Choose an available index");
             }
-            temp.setTitle(title);
-            temp.setDescription(description);
-            temp.setDate(date);
+            // comeback to this if things break...
+            if(date.length() != 10) {
+                throw new IllegalArgumentException("ERROR: A due date needs to be in the format of YYYY-MM-DD");
+            }
+//            temp.setTitle(title);
+//            temp.setDescription(description);
+//            temp.setDate(date);
+            TaskItem temp = new TaskItem(title, description, date);
             itemList.set(index, temp);
         } catch (IllegalArgumentException ex) {
             System.out.println(ex.getMessage());
@@ -139,10 +143,16 @@ public class TaskList {
             Scanner scan = new Scanner(file);
             ArrayList<TaskItem> list = new ArrayList<TaskItem>();
             while(scan.hasNext()) {
-                TaskItem temp = new TaskItem();
-                temp.setDate(scan.next());
-                temp.setTitle(scan.next());
-                temp.setDescription(scan.next());
+                String title;
+                String description;
+                String date;
+                title = scan.next();
+                description = scan.next();
+                date = scan.next();
+                TaskItem temp = new TaskItem(title, description, date);
+//                temp.setDate(scan.next());
+//                temp.setTitle(scan.next());
+//                temp.setDescription(scan.next());
                 list.add(temp);
             }
             this.itemList = list;

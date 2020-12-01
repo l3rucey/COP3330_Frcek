@@ -9,6 +9,19 @@ public class TaskItem {
     private String date;
     private boolean mark;
 
+    public TaskItem(String title, String description, String date) {
+//        if () {
+//            this.title = title;
+//            this.description = description;
+//            this.date = date;
+//        } else {
+//            System.out.println("ERROR: All entries cannot be blank");
+//        }
+        this.title = title;
+        this.description = description;
+        this.date = date;
+    }
+
     public String getTitle() {
         return this.title;
     }
