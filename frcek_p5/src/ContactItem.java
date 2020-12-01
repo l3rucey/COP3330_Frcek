@@ -17,20 +17,13 @@ public class ContactItem {
             this.lastName = lastName;
             this.phoneNumber = phoneNumber;
             this.email = email;
-            setFirstName(firstName);
-            setLastName(lastName);
-            setPhoneNumber(phoneNumber);
-            setEmail(email);
+//            setFirstName(firstName);
+//            setLastName(lastName);
+//            setPhoneNumber(phoneNumber);
+//            setEmail(email);
         } else {
             System.out.println("ERROR: All entries cannot be blank");
         }
-//        this.firstName = firstName;
-//        this.lastName = lastName;
-//        this.phoneNumber = phoneNumber;
-//        this.email = email;
-//        if (firstName.isBlank()) {
-//            System.out.println("firstname is blank");
-//        }
     }
 
     public String getFirstName() {
@@ -63,6 +56,10 @@ public class ContactItem {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String toString() {
+        return("%s %s %s %s");
     }
 
 }

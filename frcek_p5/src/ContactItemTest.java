@@ -92,4 +92,11 @@ public class ContactItemTest {
         contactList.editList(0, 1, "Dan", "Don", "561-433-0989", "ya@gmail.com");
         assertEquals("Dan", contactList.getContactList().get(0).getFirstName());
     }
+
+    @Test
+    public void testToString() {
+        ContactItem contactItem = new ContactItem("Bob", "Billy", "908-098-0989", "what@gmail.com");
+        contactItem.toString();
+        assertEquals("Bob", contactItem.getFirstName());
+    }
 }
