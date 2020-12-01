@@ -2,6 +2,8 @@
 // Contains a "desc" (0 or more 'char' in len)
 // Contains a "due date" (in this format YYYY-MM-DD)
 
+import org.junit.jupiter.api.Test;
+
 // Encapsulate item data
 public class TaskItem {
     private String title;
@@ -10,16 +12,15 @@ public class TaskItem {
     private boolean mark;
 
     public TaskItem(String title, String description, String date) {
-//        if () {
-//            this.title = title;
-//            this.description = description;
-//            this.date = date;
-//        } else {
-//            System.out.println("ERROR: All entries cannot be blank");
-//        }
-        this.title = title;
-        this.description = description;
-        this.date = date;
+        if (date.length() != 10) {
+            System.out.println("ERROR: Date needs to be in YYYY-MM-DD format");
+        } else if (title.length() < 1) {
+            System.out.println("ERROR: Title needs to be 1 or more characters");
+        } else {
+            this.title = title;
+            this.description = description;
+            this.date = date;
+        }
     }
 
     public String getTitle() {
