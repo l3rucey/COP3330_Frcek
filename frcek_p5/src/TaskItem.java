@@ -55,5 +55,9 @@ public class TaskItem {
         this.mark = mark;
     }
 
+    public String toString() {
+        return(title + " " + description + " " + date);
+    }
+
 }
 

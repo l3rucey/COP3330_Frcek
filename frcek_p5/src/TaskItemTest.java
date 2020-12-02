@@ -80,4 +80,11 @@ public class TaskItemTest {
         list.editList(0, 1,"task 2", "new desc", "2008/27/09");
         assertEquals("task 2", list.getItemList().get(0).getTitle());
     }
+
+    @Test
+    public void testToString() {
+        TaskItem item = new TaskItem("Task 1", "first task", "2009-09-08");
+        System.out.println(item.toString());
+        assertEquals("Task 1", item.getTitle());
+    }
 }

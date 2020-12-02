@@ -229,7 +229,6 @@ class TaskListTest {
         assertTrue(list.getItemList().get(0).getMark());
     }
 
-    // add more test cases
     @Test
     public void editingTaskItemChangesValues() {
         TaskList list = new TaskList();

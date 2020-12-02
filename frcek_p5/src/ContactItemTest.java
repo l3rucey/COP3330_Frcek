@@ -96,7 +96,7 @@ public class ContactItemTest {
     @Test
     public void testToString() {
         ContactItem contactItem = new ContactItem("Bob", "Billy", "908-098-0989", "what@gmail.com");
-        contactItem.toString();
+        System.out.println(contactItem.toString());
         assertEquals("Bob", contactItem.getFirstName());
     }
 }

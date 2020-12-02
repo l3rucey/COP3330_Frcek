@@ -55,7 +55,7 @@ public class ContactItem {
     }
 
     public String toString() {
-        return("%s %s %s %s");
+        return(firstName + " " + lastName + " " + phoneNumber + " " + email);
     }
 
 }

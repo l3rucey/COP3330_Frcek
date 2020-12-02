@@ -1,21 +1,11 @@
-import org.junit.Test;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Formatter;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 // Handles interaction with user (simplify main later)
 public class TaskApp {
 
     public void menuStart() {
         TaskList taskList = new TaskList(); // instantiation of a TaskList
-        //ContactList contactList = new ContactList(); // instantiation of a ContactList
         Scanner input = new Scanner(System.in);
         while (true) {
             mainMenu();
@@ -25,7 +15,6 @@ public class TaskApp {
                 while (true) {
                     opMenu();
                     int opMenuAnswer = getUserInput();
-                    //int opMenuAnswer = input.nextInt();
                     if (opMenuAnswer == 1) {
                         taskList.viewList();
                     } else if (opMenuAnswer == 2) {
@@ -53,7 +42,6 @@ public class TaskApp {
                 while (true) {
                     opMenu();
                     int opMenuAnswer = getUserInput();
-                    //int opMenuAnswer = input.nextInt();
                     if (opMenuAnswer == 1) {
                         taskList.viewList();
                     } else if (opMenuAnswer == 2) {
@@ -108,7 +96,6 @@ public class TaskApp {
     }
 
     private static void _addToList(TaskList list) {
-        //TaskItem newTask = new TaskItem(); I dont need this right??
         Scanner input = new Scanner(System.in);
 
         String title;
@@ -134,7 +121,7 @@ public class TaskApp {
             String date;
             System.out.print("Which task will you edit? ");
             index = scan.nextInt();
-            scan.nextLine(); // for buffer i think.
+            scan.nextLine(); // for buffer
             System.out.printf("Enter a new title for task %d: ", index);
             title = scan.nextLine();
             System.out.printf("Enter a new description for task %d: ", index);
