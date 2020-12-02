@@ -70,14 +70,14 @@ public class TaskApp {
         }
     }
 
-    private static void mainMenu() {
+    private void mainMenu() {
         System.out.printf("Main Menu%n---------%n%n" +
                 "1) create a new list%n" +
                 "2) load an existing list%n" +
                 "3) quit%n%n");
     }
 
-    private static int getUserInput() {
+    private int getUserInput() {
         Scanner input = new Scanner(System.in);
         boolean repeat = true;
         int answer = 0;
@@ -95,7 +95,7 @@ public class TaskApp {
         return answer;
     }
 
-    private static void _addToList(TaskList list) {
+    private void _addToList(TaskList list) {
         Scanner input = new Scanner(System.in);
 
         String title;
@@ -112,7 +112,7 @@ public class TaskApp {
         list.addToList(title, description, date);
     }
 
-    private static void _editList(TaskList list) {
+    private void _editList(TaskList list) {
         try {
             Scanner scan = new Scanner(System.in);
             int index;
@@ -136,7 +136,7 @@ public class TaskApp {
         }
     }
 
-    private static void _removeItem(TaskList list) {
+    private void _removeItem(TaskList list) {
         int index;
         int size = list.getItemList().size();
         Scanner input = new Scanner(System.in);
@@ -147,7 +147,7 @@ public class TaskApp {
         list.removeItem(index, size);
     }
 
-    private static void _markItem(TaskList list) {
+    private void _markItem(TaskList list) {
         int size = list.getItemList().size();
         int userInput;
         int uncompletedListSize = 0;
@@ -162,11 +162,12 @@ public class TaskApp {
                 uncompletedListSize++;
             }
         }
+        System.out.printf("%nWhich task will you mark as completed? ");
         userInput = input.nextInt();
         list.markItem(userInput, uncompletedListSize);
     }
 
-    private static void _unMarkItem(TaskList list) {
+    private void _unMarkItem(TaskList list) {
         int size = list.getItemList().size();
         int userInput;
         int completedListSize = 0;
@@ -181,11 +182,12 @@ public class TaskApp {
                 completedListSize++;
             }
         }
+        System.out.printf("%nWhich task will you unmark as completed? ");
         userInput = input.nextInt();
         list.unMarkItem(userInput, completedListSize);
     }
 
-    private static void _saveFile(TaskList list) {
+    private void _saveFile(TaskList list) {
         String fileName;
         Scanner input = new Scanner(System.in);
         System.out.print("Enter the filename to save as: ");
@@ -193,7 +195,7 @@ public class TaskApp {
         list.saveFile(fileName);
     }
 
-    private static void _loadList(TaskList list) {
+    private void _loadList(TaskList list) {
         Scanner input = new Scanner(System.in);
         String fileName;
         System.out.print("Enter the filename to load: ");
@@ -201,7 +203,7 @@ public class TaskApp {
         list.loadList(fileName);
     }
 
-    private static void opMenu() {
+    private void opMenu() {
         System.out.printf("%nList Operation Menu%n-------------------%n%n" +
                 "1) view the list%n" +
                 "2) add an item%n" +

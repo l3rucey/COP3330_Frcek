@@ -146,13 +146,10 @@ public class TaskList {
                 String title;
                 String description;
                 String date;
+                date = scan.next();
                 title = scan.next();
                 description = scan.next();
-                date = scan.next();
                 TaskItem temp = new TaskItem(title, description, date);
-//                temp.setDate(scan.next());
-//                temp.setTitle(scan.next());
-//                temp.setDescription(scan.next());
                 list.add(temp);
             }
             this.itemList = list;

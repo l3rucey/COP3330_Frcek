@@ -97,8 +97,8 @@ public class ContactList {
                 file.format("%s %s %s %s%n",
                         item.getFirstName(),
                         item.getLastName(),
-                        item.getEmail(),
-                        item.getPhoneNumber());
+                        item.getPhoneNumber(),
+                        item.getEmail());
             }
             file.close();
             System.out.println("task list has been saved");
@@ -123,10 +123,6 @@ public class ContactList {
                 phoneNumber = scan.next();
                 email = scan.next();
                 ContactItem temp = new ContactItem(firstName, lastName, phoneNumber, email);
-//                temp.setFirstName(scan.next());
-//                temp.setLastName(scan.next());
-//                temp.setPhoneNumber(scan.next());
-//                temp.setEmail(scan.next());
                 list.add(temp);
             }
             this.contactList = list;

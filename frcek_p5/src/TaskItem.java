@@ -21,6 +21,10 @@ public class TaskItem {
             this.description = description;
             this.date = date;
         }
+
+//        this.title = title;
+//        this.description = description;
+//        this.date = date;
     }
 
     public String getTitle() {

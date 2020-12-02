@@ -64,14 +64,14 @@ public class ContactApp {
         }
     }
 
-    private static void mainMenu() {
+    private void mainMenu() {
         System.out.printf("Main Menu%n---------%n%n" +
                 "1) create a new list%n" +
                 "2) load an existing list%n" +
                 "3) quit%n%n");
     }
 
-    private static int getUserInput() {
+    private int getUserInput() {
         Scanner input = new Scanner(System.in);
         boolean repeat = true;
         int answer = 0;
@@ -89,7 +89,7 @@ public class ContactApp {
         return answer;
     }
 
-    private static void opMenu() {
+    private void opMenu() {
         System.out.printf("%nList Operation Menu%n-------------------%n%n" +
                 "1) view the list%n" +
                 "2) add an item%n" +
@@ -99,8 +99,7 @@ public class ContactApp {
                 "6) quit to the main menu%n%n");
     }
 
-    private static void _addToList(ContactList list) {
-        //TaskItem newTask = new TaskItem(); dont need
+    private void _addToList(ContactList list) {
         Scanner input = new Scanner(System.in);
 
         String firstName;
@@ -120,7 +119,7 @@ public class ContactApp {
         list.addToList(firstName, lastName, phoneNumber, email);
     }
 
-    private static void _editList(ContactList list) {
+    private void _editList(ContactList list) {
         try {
             Scanner scan = new Scanner(System.in);
             int index;
@@ -147,8 +146,7 @@ public class ContactApp {
         }
     }
 
-    // change to name to "removeContact".
-    private static void _removeItem(ContactList list) {
+    private void _removeItem(ContactList list) {
         int index;
         int size = list.getContactList().size();
         Scanner input = new Scanner(System.in);
@@ -159,7 +157,7 @@ public class ContactApp {
         list.removeItem(index, size);
     }
 
-    private static void _saveFile(ContactList list) {
+    private void _saveFile(ContactList list) {
         String fileName;
         Scanner input = new Scanner(System.in);
         System.out.print("Enter the filename to save as: ");
@@ -167,9 +165,7 @@ public class ContactApp {
         list.saveFile(fileName);
     }
 
-
-    // change param to contactList
-    private static void _loadList(ContactList list) {
+    private void _loadList(ContactList list) {
         Scanner input = new Scanner(System.in);
         String fileName;
         System.out.print("Enter the filename to load: ");
